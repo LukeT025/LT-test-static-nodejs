@@ -10,12 +10,8 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-/**
- * CORS allowlist for your static site
- * Set this in Azure App Settings:
- *   ALLOW_ORIGIN=https://<your-static-site>.azurestaticapps.net
- */
-const allowedOrigin = process.env.ALLOW_ORIGIN || "https://your-static-site.azurestaticapps.net";
+
+const allowedOrigin = process.env.ALLOW_ORIGIN || "https://zealous-cliff-0dbb7041e.1.azurestaticapps.net";
 const corsOk = cors({
   origin: allowedOrigin,
   methods: ["GET"],
