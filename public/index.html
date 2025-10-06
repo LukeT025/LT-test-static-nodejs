@@ -3,10 +3,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dice Roller API – Test</title>
 <style>
-  body{font:16px system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;margin:2rem}
-  button{padding:.55rem .9rem;margin:.25rem .4rem 1rem 0}
+  body{font:16px system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:2rem;line-height:1.5}
+  button{padding:.55rem .9rem;margin:.25rem .4rem 1rem 0;cursor:pointer}
   input{width:6rem;padding:.3rem .4rem}
-  pre{background:#f7f7f7;padding:.75rem;border:1px solid #ddd;overflow:auto}
+  pre{background:#f7f7f7;padding:.75rem;border:1px solid #ddd;overflow:auto;max-width:900px}
 </style>
 
 <h1>Dice Roller API — Test Page</h1>
@@ -18,13 +18,12 @@
 </div>
 <div>
   <label>dice <input id="dice" type="number" value="5" min="1"></label>
-  <label>sides <input id="sides" type="number" value="6" min="2"></label>
+  <label style="margin-left:.5rem">sides <input id="sides" type="number" value="6" min="2"></label>
   <button id="rollsBtn">/api/rolls</button>
 </div>
 <div>
   <button id="blockedBtn">/api/blocked (no CORS)</button>
 </div>
-
 <pre id="out"></pre>
 
 <script>
@@ -35,7 +34,9 @@ const j = (p)=> fetch(p).then(r=>r.json());
 wakeupBtn.onclick = ()=> j('/api/wakeup').then(print).catch(e=>print(String(e)));
 oneRollBtn.onclick = ()=> j('/api/roll?sides=6').then(print).catch(e=>print(String(e)));
 rollsBtn.onclick = ()=>{
-  j(`/api/rolls?dice=${dice.value}&sides=${sides.value}`).then(print).catch(e=>print(String(e)));
+  const d = document.getElementById('dice').value;
+  const s = document.getElementById('sides').value;
+  j(`/api/rolls?dice=${d}&sides=${s}`).then(print).catch(e=>print(String(e)));
 };
 blockedBtn.onclick = ()=> fetch('/api/blocked').then(r=>r.text()).then(print).catch(e=>print(String(e)));
 </script>
